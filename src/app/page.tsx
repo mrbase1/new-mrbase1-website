@@ -396,15 +396,29 @@ export default function Home() {
         </section>
       </main>
 
-      <a
-        aria-label="Back to top"
-        className="fixed bottom-6 right-6 z-50 inline-flex h-11 items-center gap-2 rounded-full bg-slate-950/90 px-5 text-sm font-bold text-white shadow-xl shadow-blue-950/20 backdrop-blur-xl transition hover:-translate-y-0.5 hover:bg-orange-500"
-        href="#top"
-        title="Back to top"
-      >
-        <span aria-hidden="true">↑</span>
-        <span>Back to top</span>
-      </a>
+      <div className="fixed bottom-6 right-6 z-50 flex gap-3">
+        <a
+          aria-label="Back to top"
+          className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-slate-950/90 text-sm font-bold text-white shadow-xl shadow-blue-950/20 backdrop-blur-xl transition hover:-translate-y-0.5 hover:bg-orange-500 sm:w-auto sm:px-5"
+          href="#top"
+          title="Back to top"
+        >
+          <span aria-hidden="true">↑</span>
+          <span className="hidden sm:inline">Back to top</span>
+        </a>
+
+        <a
+          aria-label="Chat with Base1 on WhatsApp"
+          className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-sm font-bold text-white shadow-xl shadow-emerald-950/20 transition hover:-translate-y-0.5 hover:bg-emerald-600 sm:w-auto sm:px-5"
+          href="https://wa.me/2348033380055?text=Hi%20Base1%2C%20I%27d%20like%20to%20discuss%20a%20project."
+          rel="noopener noreferrer"
+          target="_blank"
+          title="Chat on WhatsApp"
+        >
+          <span aria-hidden="true">WA</span>
+          <span className="hidden sm:inline">WhatsApp</span>
+        </a>
+      </div>
 
       <footer className="border-t border-white/70 bg-white/50 px-6 py-8 backdrop-blur-xl sm:px-8 lg:px-10">
         <div className="mx-auto flex max-w-7xl flex-col gap-4 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">

@@ -1,31 +1,52 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { type ChangeEvent, type FormEvent, useState } from "react";
 
 const initialForm = {
-  name: "",
   email: "",
-  projectType: "web",
   message: "",
+  name: "",
+  projectType: "web",
+  submittedAt: 0,
+  website: "",
 };
 
 export default function ContactForm() {
   const [form, setForm] = useState(initialForm);
-  const [status, setStatus] = useState<"idle" | "sent">("idle");
+  const [status, setStatus] = useState<
+    "error" | "idle" | "sent" | "submitting"
+  >("idle");
 
-  function handleChange(
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
-  ) {
+  function handleChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
     setForm((current) => ({
       ...current,
       [event.currentTarget.name]: event.currentTarget.value,
     }));
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setStatus("sent");
-    setForm(initialForm);
+
+    setStatus("submitting");
+
+    try {
+      const response = await fetch("/api/contact", {
+        body: JSON.stringify({ ...form, submittedAt: Date.now() }),
+        headers: {
+          "content-type": "application/json",
+        },
+        method: "POST",
+      });
+
+      if (!response.ok) {
+        throw new Error("Contact submission failed");
+      }
+
+      setStatus("sent");
+      setForm(initialForm);
+    } catch {
+      setStatus("error");
+    }
 
     window.setTimeout(() => {
       setStatus("idle");
@@ -34,6 +55,16 @@ export default function ContactForm() {
 
   return (
     <form className="glass-card rounded-[2rem] p-6 sm:p-8" onSubmit={handleSubmit}>
+      <input
+        aria-hidden="true"
+        autoComplete="off"
+        className="sr-only"
+        name="website"
+        onChange={handleChange}
+        tabIndex={-1}
+        type="text"
+        value={form.website}
+      />
       <div className="grid gap-5 sm:grid-cols-2">
         <label className="grid gap-2 text-sm font-semibold text-slate-700">
           Name
@@ -90,18 +121,25 @@ export default function ContactForm() {
           className={
             status === "sent"
               ? "text-sm font-semibold text-emerald-700"
-              : "text-sm text-slate-500"
+              : status === "error"
+                ? "text-sm font-semibold text-red-700"
+                : "text-sm text-slate-500"
           }
         >
-          {status === "sent"
-            ? "Thanks. Your project brief is ready to discuss."
-            : "No backend is connected in this demo form."}
+          {status === "submitting"
+            ? "Sending your brief..."
+            : status === "sent"
+              ? "Thanks. Your project brief has been sent."
+              : status === "error"
+                ? "Something went wrong. Please try again."
+                : "We reply to genuine enquiries as soon as possible."}
         </p>
         <button
-          className="inline-flex h-12 items-center justify-center rounded-full bg-slate-950 px-6 text-sm font-semibold text-white shadow-lg shadow-blue-950/20 transition hover:-translate-y-0.5 hover:bg-orange-500"
+          className="inline-flex h-12 items-center justify-center rounded-full bg-slate-950 px-6 text-sm font-semibold text-white shadow-lg shadow-blue-950/20 transition hover:-translate-y-0.5 hover:bg-orange-500 disabled:cursor-not-allowed disabled:opacity-60"
+          disabled={status === "submitting"}
           type="submit"
         >
-          Send brief
+          {status === "submitting" ? "Sending..." : "Send brief"}
         </button>
       </div>
     </form>
