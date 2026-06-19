@@ -51,22 +51,39 @@ const services = [
 
 const products = [
   {
-    title: "Connected Prototype Kit",
+    title: "InkRefine",
     description:
-      "A repeatable foundation for testing sensors, controls, telemetry, and cloud-connected workflows before investing in production hardware.",
-    tags: ["Arduino", "ESP8266", "ESP32", "MQTT", "Dashboards"],
+      "An AI-powered book editing platform that accelerates your editing workflow and elevates manuscript quality. Built for authors and publishers who demand precision—our intelligent system reduces editing time by up to 40% while improving accuracy and consistency across every chapter.",
+    tags: ["AI", "Publishing", "Productivity", "Editing"],
+    image: "https://res.cloudinary.com/dfsfskmha/image/upload/v1779636696/rusba/inkrefine-screenshot_ryzzhh.png",
   },
   {
-    title: "Field Operations App",
+    title: "RusbaTV",
     description:
-      "A mobile-first app concept for field teams that need checklists, media capture, GPS context, and reliable offline sync.",
-    tags: ["Mobile", "Offline Sync", "GPS", "Media Capture"],
+      "Stream thousands of live TV channels from every corner of the globe with crystal-clear quality and zero buffering. Whether you're catching sports overseas, your favorite drama, or news from home, RusbaTV delivers the world's entertainment straight to your screen.",
+    tags: ["IPTV", "Streaming", "Mobile", "Entertainment"],
+    image: "https://res.cloudinary.com/dfsfskmha/image/upload/v1779636696/rusba/rusbatv_-screenshot_zhxfmm.png",
   },
   {
-    title: "Media Automation Dashboard",
+    title: "Rusba Rides",
     description:
-      "A web dashboard concept for managing campaigns, content queues, approvals, analytics, and operational reporting.",
-    tags: ["Web App", "Analytics", "Workflow", "Admin Tools"],
+      "A revolutionary ride-hailing platform that puts more money in drivers' pockets while keeping fares fair for passengers. Our transparent pricing model means better earnings for drivers and honest rides for everyone—no hidden fees, just fair transactions.",
+    tags: ["Ride-hailing", "Transport", "Mobile", "Marketplace"],
+    image: "https://res.cloudinary.com/dfsfskmha/image/upload/v1779636875/rusba/rusbarides-screenshot_efo7u3.png",
+  },
+  {
+    title: "ElectionManager",
+    description:
+      "Secure, transparent online voting for clubs, associations, and small organizations. Simplify your election process with verifiable results, member authentication, and real-time vote counting—all accessible from any device.",
+    tags: ["Voting", "Web App", "Security", "Organizations"],
+    image: "https://res.cloudinary.com/dfsfskmha/image/upload/v1750365592/rusba/electionhub-logo_ney3fi.png",
+  },
+  {
+    title: "AquaLevel",
+    description:
+      "Control your building's entire water system from your smartphone. Our WiFi and Bluetooth-enabled smart switch gives you instant control over water supply, with real-time monitoring, remote shutoff, and automated scheduling—all from an intuitive web interface.",
+    tags: ["IoT", "Smart Home", "WiFi", "Bluetooth"],
+    image: "https://res.cloudinary.com/dfsfskmha/image/upload/v1762263886/rusba/smartswitch_yp0sux.jpg",
   },
 ];
 
@@ -295,20 +312,17 @@ export default function Home() {
 
         <section className="scroll-mt-28 px-6 py-16 sm:px-8 lg:px-10" id="products">
           <div className="mx-auto max-w-7xl">
-            <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
-              <div className="reveal">
-                <SectionHeading
-                  align="left"
-                  description="Base1 can shape repeatable product systems that start as prototypes and grow into deployable platforms."
-                  eyebrow="Product systems"
-                  title="Reusable concepts for modern teams."
-                />
-              </div>
-              <div className="grid gap-6 lg:grid-cols-1">
-                {products.map((product) => (
-                  <ProductCard key={product.title} {...product} />
-                ))}
-              </div>
+            <SectionHeading
+              align="center"
+              description="Base1 can shape repeatable product systems that start as prototypes and grow into deployable platforms."
+              eyebrow="Product systems"
+              title="Reusable concepts for modern teams."
+            />
+
+            <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {products.map((product) => (
+                <ProductCard key={product.title} {...product} />
+              ))}
             </div>
           </div>
         </section>
@@ -409,13 +423,17 @@ export default function Home() {
 
         <a
           aria-label="Chat with Base1 on WhatsApp"
-          className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-sm font-bold text-white shadow-xl shadow-emerald-950/20 transition hover:-translate-y-0.5 hover:bg-emerald-600 sm:w-auto sm:px-5"
+          className="inline-flex h-12 items-center justify-center rounded-full bg-[#25D366] text-sm font-bold text-white shadow-xl shadow-emerald-950/20 transition hover:-translate-y-0.5 hover:bg-emerald-600 sm:px-5"
           href="https://wa.me/2348033380055?text=Hi%20Base1%2C%20I%27d%20like%20to%20discuss%20a%20project."
           rel="noopener noreferrer"
           target="_blank"
           title="Chat on WhatsApp"
         >
-          <span aria-hidden="true">WA</span>
+          <img
+            src="https://res.cloudinary.com/dfsfskmha/image/upload/v1781883314/mrbase1%20web%20content/logo-whatsapp-png-46060_tsigt9.png"
+            alt="WhatsApp"
+            className="h-6 w-6 sm:mr-2"
+          />
           <span className="hidden sm:inline">WhatsApp</span>
         </a>
       </div>
