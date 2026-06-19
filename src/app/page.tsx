@@ -142,19 +142,21 @@ export default function Home() {
 
       <header className="sticky top-0 z-50 border-b border-white/70 bg-white/70 shadow-sm shadow-blue-950/5 backdrop-blur-2xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 sm:px-8 lg:px-10">
-          <a className="group flex items-center gap-3" href="#top">
-            <span className="grid h-10 w-10 place-items-center rounded-2xl bg-slate-950 text-sm font-black text-white shadow-lg shadow-blue-950/20 transition group-hover:bg-orange-500">
-              B1
-            </span>
-            <span className="leading-tight">
-              <span className="block text-base font-bold tracking-tight text-slate-950">
-                Base1
-              </span>
-              <span className="block text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
-                Media & Tech
-              </span>
-            </span>
-          </a>
+<a className="group flex items-center gap-3" href="#top">
+<img
+               src="https://res.cloudinary.com/dfsfskmha/image/upload/v1781886309/Base1logo_sgbtzy.png"
+               alt="Base1 Logo"
+               className="h-10 w-10 bg-white object-contain shadow-lg shadow-blue-950/20 transition group-hover:scale-105"
+             />
+             <span className="leading-tight">
+               <span className="block text-base font-bold tracking-tight text-slate-950">
+                 Base1
+               </span>
+               <span className="block text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
+                 Media & Tech
+               </span>
+             </span>
+           </a>
 
           <nav aria-label="Primary navigation" className="hidden items-center gap-8 text-sm font-semibold text-slate-600 md:flex">
             <a className="transition hover:text-orange-600" href="#services">
